@@ -25,13 +25,18 @@ wss.on("connection", (ws, req) => {
       case "start":
         streamSid = data.start.streamSid;
         console.log("▶️  start", streamSid, data.start.customParameters || {});
-        // TODO: init OpenAI Realtime here later
+        // TODO: later - init OpenAI Realtime session here
         break;
 
       case "media":
-        // data.media.payload is base64 μ-law 8kHz, 20ms
-        // TODO: forward to AI, then send audio back via:
-        // ws.send(JSON.stringify({ event: "media", streamSid, media: { payload: base64UlawChunk } }));
+        // data.media.payload = base64 μ-law 8kHz 20ms audio
+        // TODO: later - forward to OpenAI and send back audio
+        // Example send-back (when you have a chunk):
+        // ws.send(JSON.stringify({
+        //   event: "media",
+        //   streamSid,
+        //   media: { payload: base64UlawChunk }
+        // }));
         break;
 
       case "mark":
