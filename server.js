@@ -66,9 +66,14 @@ app.post("/telnyx", async (req, res) => {
       return res.json({
         data: {
           actions: [
-            { answer: {} },
-            { speak: { voice: "female", language: lang, payload: greeting } }
-          ]
+  { answer: {} },
+  { speak: { voice: "female", language: lang, payload: greeting } },
+  {
+    fork_start: {
+      ws_url: "wss://elysium-voice-bridge.onrender.com/stream"
+    }
+  }
+]
         }
       });
     }
